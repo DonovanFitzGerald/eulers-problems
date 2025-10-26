@@ -4,8 +4,13 @@ targetNumber = 13195
 # 13195
 # 600851475143
 
+prevPrint = 0
+printInterval = 1000
 for i in range(3, targetNumber, 2):
-    if i % 1 == 0: print(i)
+    
+    if i > prevPrint + printInterval - 1: 
+        print(i)
+        prevPrint = i
     
     isPrime = True
     for p in primes:
