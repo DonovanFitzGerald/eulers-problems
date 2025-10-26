@@ -1,4 +1,4 @@
-primes = [2]
+primes = []
 primeFactors = []
 targetNumber = 13195
 # 13195
