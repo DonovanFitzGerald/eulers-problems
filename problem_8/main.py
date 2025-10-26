@@ -2,8 +2,9 @@ digits = "7316717653133062491922511967442657474235534919493496983520312774506326
 
 windowLength = 4
 def windowProduct(str):
-    total = 0
+    total = 1
     for i in range(len(str)):
         total *= int(str[i])
+    return total
         
 print(windowProduct("1234"))
