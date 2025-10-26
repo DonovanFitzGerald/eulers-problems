@@ -1,11 +1,11 @@
 primes = [2]
 primeFactors = []
-targetNumber = 600851475143
+targetNumber = 13195
 # 13195
 # 600851475143
 
-for i in range(targetNumber):
-    if i < 2: continue
+for i in range(3, targetNumber, 2):
+    if i % 1 == 0: print(i)
     
     isPrime = True
     for p in primes:
