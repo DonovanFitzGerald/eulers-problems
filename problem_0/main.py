@@ -7,3 +7,11 @@ while integer < 883000:
     integer += 1
         
 print("Donovan's Total: ", total)
+total = 0
+
+# Seamus' Problem
+for x in range (401000):
+    if (x * x) % 2 != 0:
+        total += x*x
+
+print("Seamus' Total: ",total)
