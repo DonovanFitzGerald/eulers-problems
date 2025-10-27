@@ -4,7 +4,19 @@ def buildTwoDArray(oneDArray, rowLen):
     twoDArray = [] 
     for i in range(rowLen, len(oneDArray), rowLen):
         twoDArray.append(oneDArray[i-rowLen:i])
-    
-    print(twoDArray)
+    return twoDArray
 
-buildTwoDArray(oneDArray, 20)
+def getGridValue(array, coords):
+    x = coords[0]
+    y = coords[1]
+    yLen = len(array)
+    xLen = len(array[0])
+    if x < 0 or x > xLen: return 0
+    if y < 0 or y > yLen: return 0
+    return array[x][y]
+        
+arrayLength = 20
+twoDArray = buildTwoDArray(oneDArray, arrayLength)
+value = getGridValue(twoDArray,( 1, 2 ))
+print(value)
+
