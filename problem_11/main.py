@@ -19,7 +19,7 @@ def getDiagonalCoords(start, length, direction):
     coords = [start]
     for i in range(1, length):
         coords.append((start[0] + i, start[1] + i * direction))
-    return coords
+    return coords[::-1] 
         
 arrayLength = 20
 twoDArray = buildTwoDArray(oneDArray, arrayLength)
