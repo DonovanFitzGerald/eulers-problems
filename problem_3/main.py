@@ -6,23 +6,27 @@ targetNumber = 600851475143
 # 600851475143
 
 def checkIsPrime(num):
-    if num == 1 or num == 0: return False
-    if num in primes: return True
-    
-    isPrime = True
+    if num < 2: return False
     for p in primes:
             if num % p == 0:
-                isPrime = False
-                break
-    if isPrime:
-        primes.append(num)
-        return True
-    else:
-        return False
+                return False
+    primes.append(num)
+    return True
     
-def printProgress(num, prevPrint, printInterval):
+def elipticCurvePrimeTest(num):
+    if num < 2: return False
+    for i in range(2, int(math.sqrt(num))+1):
+        if num % i == 0:
+            return False
+    primes.append(num)
+    return True    
+    
+def printProgress(num, prevPrint, printInterval, data):
     if prevPrint < num + printInterval:
-        print(num)
+        if data:
+            print(num, data)
+        else:
+            print(num)
         prevPrint += printInterval
         
     return prevPrint
@@ -35,7 +39,7 @@ def solveByDivisionTesting():
         
         # prevPrint = printProgress(i, prevPrint, 10000)
 
-        isPrime = checkIsPrime(i)
+        isPrime = elipticCurvePrimeTest(i)
         if isPrime:
             if targetNumber % i == 0:
                 primeFactors.append(i)
@@ -46,7 +50,7 @@ def solveByDivisionTesting():
             if not pairFactor.is_integer():
                 continue
 
-            isPrime = checkIsPrime(int(pairFactor))
+            isPrime = elipticCurvePrimeTest(int(pairFactor))
             if isPrime:
                 primeFactors.append(int(pairFactor))
                 
@@ -57,9 +61,9 @@ def solveByDecomposition():
     prevPrint = 0
     while p <= currentTarget:
         
-        # prevPrint = printProgress(p, prevPrint, 1000)
+        prevPrint = printProgress(p, prevPrint, 100000, currentTarget)
         
-        if not checkIsPrime(p):
+        if not elipticCurvePrimeTest(p):
             p += 1
             continue
         
@@ -67,7 +71,8 @@ def solveByDecomposition():
         if divisionResult.is_integer():
             divisionResult = int(divisionResult)
             
-            primeFactors.append(p)
+            if p not in primeFactors:
+                primeFactors.append(p)
             currentTarget = divisionResult
                 
             continue
