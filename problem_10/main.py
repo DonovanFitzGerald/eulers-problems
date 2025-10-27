@@ -29,7 +29,7 @@ def elipticCurvePrimeTest(num):
             return False
     print(num)
     primes.append(num)
-    return False    
+    return True    
     
     
     
