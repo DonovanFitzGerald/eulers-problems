@@ -100,5 +100,5 @@ numbers = [37107287533902102798797998220837590246510135740250,
 53503534226472524250874054075591789781264330331690,]
 
 sumNums = sum(numbers)
-print("Sum:",sumNums)
+print("Sum:      ",sumNums)
 print("10 Digits:",str(sumNums)[0:10])
