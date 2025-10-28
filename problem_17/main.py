@@ -1,5 +1,7 @@
 def getNumName(num):
+    num = int(num)
     numNames = {
+        0: "",
         1: "one",
         2: "two",
         3: "three",
@@ -20,9 +22,21 @@ def getNumName(num):
         80: "eighty"
     }
     if num in numNames: return numNames[num]
-    if num < 20:        return numNames[num-10] + "teen"
+    
+    if num >= 1000: 
+        thousandCount = getNumName((num - num % 1000) / 1000)
+        if num % 1000 == 0: return thousandCount + " thousand "
+        return thousandCount + " thousand " + getNumName(num % 1000)
+    
+    if num >= 100: 
+        hundredCount = getNumName((num - num % 100) / 100)
+        if num % 100 == 0: return hundredCount + " hundred "
+        return hundredCount + " hundred and " + getNumName(num % 100)
+    
     if num < 100: 
         if num % 10 == 0: return numNames[num/10] + "ty"
-        return getNumName(num % 10) + getNumName(num - num % 10)
+        return getNumName(num - num % 10) + getNumName(num % 10)
     
-print(getNumName(67))
+    if num < 20:        return numNames[num-10] + "teen"
+    
+print(getNumName(1211))
