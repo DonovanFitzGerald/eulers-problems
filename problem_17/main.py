@@ -21,7 +21,8 @@ def getNumName(num):
     }
     if num in numNames: return numNames[num]
     if num < 20:        return numNames[num-10] + "teen"
-    if num % 10 == 0 and not num < 100:   return numNames[num/10] + "ty"
+    if num < 100: 
+        if num % 10 == 0: return numNames[num/10] + "ty"
+        return getNumName(num % 10) + getNumName(num - num % 10)
     
-    
-print(getNumName(17))
+print(getNumName(67))
