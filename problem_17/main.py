@@ -1,3 +1,5 @@
+import re
+
 def getNumName(num):
     num = int(num)
     numNames = {
@@ -15,28 +17,33 @@ def getNumName(num):
         11: "eleven",
         12: "twelve",
         13: "thirteen",
+        15: "fifteen",
         18: "eighteen",
         20: "twenty",
         30: "thirty",
+        40: "forty",
         50: "fifty",
         80: "eighty"
     }
     if num in numNames: return numNames[num]
-    
     if num >= 1000: 
         thousandCount = getNumName((num - num % 1000) / 1000)
         if num % 1000 == 0: return thousandCount + " thousand "
         return thousandCount + " thousand " + getNumName(num % 1000)
-    
     if num >= 100: 
         hundredCount = getNumName((num - num % 100) / 100)
         if num % 100 == 0: return hundredCount + " hundred "
         return hundredCount + " hundred and " + getNumName(num % 100)
-    
-    if num < 100: 
+    if 20 < num < 100: 
         if num % 10 == 0: return numNames[num/10] + "ty"
-        return getNumName(num - num % 10) + getNumName(num % 10)
+        return getNumName(num - num % 10) + "-" + getNumName(num % 10)
+    return numNames[num-10] + "teen"
+
+total = 0  
+for i in range(1000 + 1):
+    numName = getNumName(i)
+    sanitizedName = re.sub(r'\s|-', '', numName)
+    total += len(sanitizedName)
+    print(numName)
     
-    if num < 20:        return numNames[num-10] + "teen"
-    
-print(getNumName(1211))
+print(total)
