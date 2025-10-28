@@ -7,7 +7,7 @@ def findDivisors(num):
         if num % divisor == 0:
             divisors.append(divisor)
             if divisor != sqrRoot:
-                divisors.append(num/divisor)
+                divisors.append(int(num/divisor))
     return divisors
 
 
@@ -22,7 +22,7 @@ while not finished:
         finished = True
     
 print(runningTotal)
-    
+print(findDivisors(runningTotal))
 
 
 
